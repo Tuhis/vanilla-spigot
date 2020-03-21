@@ -18,10 +18,10 @@ WORKDIR /home/minecraft
 
 # Create application dir
 RUN mkdir mc-server && chown minecraft:minecraft mc-server
-WORKDIR /home/minecraf/mc-sever
-RUN mv /spigot-*.jar spigot.jar
-COPY --chown=minecraft:minecraft eula.txt ./
-COPY --chown=minecraft:minecraft start.sh ./
+WORKDIR /home/minecraft/mc-server
+RUN mv /spigot-*.jar ./spigot.jar
+COPY --chown=minecraft:minecraft eula.txt .
+COPY --chown=minecraft:minecraft start.sh .
 RUN chmod +x start.sh
 
 # Connections to outer world
