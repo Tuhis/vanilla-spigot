@@ -21,6 +21,7 @@ RUN mkdir mc-server && chown minecraft:minecraft mc-server
 RUN mv /spigot-*.jar mc-server/spigot.jar
 COPY --chown=minecraft:minecraft eula.txt mc-server/
 COPY --chown=minecraft:minecraft start.sh mc-server/
+RUN chmod +x mc-server/start.sh
 
 # Connections to outer world
 EXPOSE 25565
