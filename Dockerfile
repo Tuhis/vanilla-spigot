@@ -12,15 +12,18 @@ RUN curl -o BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastS
 # RUN git config --global --unset core.autocrlf
 RUN java -jar BuildTools.jar --rev 1.15.2
 
+# Create user
+RUN useradd -ms /bin/bash minecraft
+WORKDIR /home/minecraft
+
 # Create application dir
-RUN mkdir /mc-server
-RUN cp spigot-*.jar /mc-server/spigot.jar
-COPY eula.txt /mc-server/
-COPY start.sh /mc-server/
-RUN chmod 777 /mc-server/*
+RUN mkdir mc-server && chown minecraft:minecraft mc-server
+RUN mv /spigot-*.jar mc-server/spigot.jar
+COPY --chown=minecraft:minecraft eula.txt mc-server/
+COPY --chown=minecraft:minecraft start.sh mc-server/
 
 # Connections to outer world
 EXPOSE 25565
 
 # Start server
-ENTRYPOINT [ "/mc-server/start.sh" ]
+ENTRYPOINT [ "/home/minecraft/mc-server/start.sh" ]
