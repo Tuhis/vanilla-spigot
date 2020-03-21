@@ -13,7 +13,7 @@ RUN curl -o BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastS
 RUN java -jar BuildTools.jar --rev 1.15.2
 
 # Create user
-RUN useradd -ms /bin/bash minecraft
+RUN useradd -u 1001 -ms /bin/bash minecraft
 WORKDIR /home/minecraft
 
 # Create application dir
@@ -23,6 +23,17 @@ RUN mv /spigot-*.jar ./spigot.jar
 COPY --chown=minecraft:minecraft eula.txt .
 COPY --chown=minecraft:minecraft start.sh .
 RUN chmod +x start.sh
+
+# Create datadirectory mountpoints
+RUN mkdir world && \
+mkdir world_nether && \
+mkdir world_the_end && \
+mkdir logs && \
+chown minecraft:minecraft world && \
+chown minecraft:minecraft world_nether && \
+chown minecraft:minecraft world_the_end && \
+chown minecraft:minecraft logs
+
 
 # Connections to outer world
 EXPOSE 25565
