@@ -17,6 +17,7 @@ RUN mkdir /mc-server
 RUN cp spigot-*.jar /mc-server/spigot.jar
 COPY eula.txt /mc-server/
 COPY start.sh /mc-server/
+RUN chmod 777 /mc-server/*
 
 # Connections to outer world
 EXPOSE 25565
