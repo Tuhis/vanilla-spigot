@@ -25,15 +25,19 @@ COPY --chown=minecraft:minecraft start.sh .
 RUN chmod +x start.sh
 
 # Create datadirectory mountpoints
-RUN mkdir world && \
-mkdir world_nether && \
-mkdir world_the_end && \
-mkdir logs && \
-chown minecraft:minecraft world && \
-chown minecraft:minecraft world_nether && \
-chown minecraft:minecraft world_the_end && \
-chown minecraft:minecraft logs
+RUN mkdir data && chown minecraft:minecraft data
+RUN mkdir config-import && chown minecraft:minecraft config-import
+RUN mkdir plugin-config-import && chown minecraft:minecraft plugin-config-import
 
+# Import plugins
+RUN mkdir plugins && chown minecraft:minecraft plugins
+COPY --chown=minecraft:minecraft plugins/ plugins/
+
+# Fetch plugins from internet
+# ADD <url-to-jar> plugins/
+# RUN chown minecraft:minecraft plugins/*
+
+WORKDIR /home/minecraft/mc-server/data
 
 # Connections to outer world
 EXPOSE 25565
