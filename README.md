@@ -1,8 +1,13 @@
-# Spigot Minecraft server Docker image
-This repository contains Dockerfile to build working Docker container with [Spigot Minecraft server](https://www.spigotmc.org/).
+# Dockerized Spigot Minecraft server
+Dockerized [Spigot Minecraft server](https://www.spigotmc.org/) with minimum amount of plugins.
 
-This README.md is (and will be) incomplete.
+## Plugins
+Aim is to have a minimum amount of plugins included in the standard build. Currently always included plugins are:
+- Dynmap
+- Harbor
+- ServerLogin with GUI
 
-As this Docker image is made to fulfill my own interests, it includes a couple of quality-of-life plugins. Please check plugins folder.
+Plugins can be configured, documentation will be updated at some point.
 
-For plugin and server configuration please see start.sh and figure it out by yourself.
+## Server configuration
+Can be done, documentation is to be done.
