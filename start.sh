@@ -1,4 +1,12 @@
-#!/bin/sh
+#!/bin/bash
+
+_term() {
+  echo "Caught SIGTERM signal!"
+  kill "$child"
+  wait "$child"
+}
+
+trap _term SIGTERM
 
 JAVA_XMX="${JAVA_XMX:-4G}"
 JAVA_XMS="${JAVA_XMS:-4G}"
@@ -16,4 +24,7 @@ echo "Using JAVA_XMX: $JAVA_XMX"
 echo "Using JAVA_XMS: $JAVA_XMS"
 echo "Using JAVA_OPTS: $JAVA_OPTS"
 
-java -Xms${JAVA_XMX} -Xmx${JAVA_XMS} ${JAVA_OPTS} -jar /home/minecraft/mc-server/spigot.jar
+java -Xms${JAVA_XMX} -Xmx${JAVA_XMS} ${JAVA_OPTS} -jar /home/minecraft/mc-server/spigot.jar &
+
+child=$!
+wait "$child"
