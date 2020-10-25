@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
 RUN curl -o BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
 # Following command fails, but BuildTools seem to be fine without.
 # RUN git config --global --unset core.autocrlf
-RUN java -jar BuildTools.jar --rev 1.16.1
+RUN java -jar BuildTools.jar --rev 1.16.3
 
 # Create user
 RUN useradd -u 1001 -ms /bin/bash minecraft

@@ -1,6 +1,6 @@
 # Plugins, links and related licenses
 
-## Dynmap-3.1-beta-2-spigot.jar
+## Dynmap-3.1-beta-4-spigot.jar
 https://www.spigotmc.org/resources/dynmap.274/
 Apache License
                            Version 2.0, January 2004
@@ -206,7 +206,7 @@ Apache License
 
 
 
-## Harbor.jar
+## Harbor-1.6.2.jar
 https://www.spigotmc.org/resources/harbor-a-sleep-enhancement-plugin.60088/
 MIT License
 
