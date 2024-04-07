@@ -13,7 +13,8 @@ ENV TZ=Europe/Helsinki
 RUN apk add --no-cache \
     tzdata \
     git \
-    curl
+    curl \
+    udev
 
 # Get Spigot BuildTools and create spigot.jar
 RUN curl -o BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
