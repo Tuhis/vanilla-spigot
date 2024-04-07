@@ -1,14 +1,17 @@
-FROM ubuntu:focal
+FROM amazoncorretto:22-alpine3.19-full
 
-ARG DEBIAN_FRONTEND=noninteractive
+# ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Helsinki
 
 # Install needed tools
-RUN apt-get update && apt-get install -y \
+# RUN apt-get update && apt-get install -y \
+#     tzdata \
+#     default-jdk \
+#     git \
+#     curl
+
+RUN apk add --no-cache \
     tzdata \
-    openjdk-16-jre \
-    openjdk-16-jdk \
-    openjdk-16-jdk-headless \
     git \
     curl
 
@@ -16,10 +19,11 @@ RUN apt-get update && apt-get install -y \
 RUN curl -o BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
 # Following command fails, but BuildTools seem to be fine without.
 # RUN git config --global --unset core.autocrlf
-RUN java -jar BuildTools.jar --rev 1.17.1
+RUN java -jar BuildTools.jar --rev 1.20.4
 
 # Create user
-RUN useradd -u 1001 -ms /bin/bash minecraft
+# RUN useradd -u 1001 -ms /bin/bash minecraft
+RUN adduser -D -u 1001 minecraft
 WORKDIR /home/minecraft
 
 # Create application dir
